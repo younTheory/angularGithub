@@ -1,24 +1,18 @@
 <div>
-    <h1>Simple Github API Webapp</h1>
-    <p>Enter a single Github username below and click the button to display profile info.</p>
-	<form ng-submit="getGitInfo()">
-		<input type="text" id="username" ng-model="username">
-		<input type="submit" value="chercher"> 
-	</form>
+	<center>
+    <h2>Simple Github API Webapp</h2></br>
+	</center>
+    <p><center>Welcome everyone,</center></br>
+	
+	This web application was developped mainly with angularJS using the github API. The application provides you 2 statistics :</br></br>
+	- The first is to retrieve informations about a github user. You will have to put the name of the user in the formular to retrieve his informations. You will be also able to see the statistics of his repository.</br></br>
+	- The second is to retrieve informations about a repository on github. You will have to put the complet url of the repository (Example : https://github.com/younTheory/angularGithub ) in search field to display the informations.
+	If the repository is only used by one contributor, you will have a different statistic then normally</br></br>
+	
+	You can find the whole code on github <a href="https://github.com/younTheory/angularGithub"> here </a></br></br>
+	<center>Enjoy everyone with love,</center>
+	</p>
+	
+	
 
 </div>
-
-<div ng-show="loaded">
-   <h2> {{ user.name }}
-      <span class="smallname">(@<a href="{{user.html_url}}" target="_blank"> {{user.login}} </a>)</span>
-   </h2>
- 
-   <div class="ghcontent">
-      <div class="avi">
-         <a href="{{ user.html_url }}" target="_blank">
-            <img src="{{ user.avatar_url }}" width="80" height="80" alt="{{ user.login }}"></a>
-      </div>
-      Followers: {{ user.followers }} - Following: {{ user.following }}<br>Repos: {{ user.public_repos }}</p>
-   </div>
-</div>
-

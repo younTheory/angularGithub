@@ -1,28 +1,31 @@
-<div>
+<div ng-show="search">
     <h2>Are you looking for some statistics of GitHub:</h2>
 	<p>Enter the url of the repository : </p>
 	<form ng-submit="getRepository()">
 		<input type="text" id="repository" ng-model="repository">
 		<input type="submit" value="search"> 
 	</form>
+	</br></br>
+</div>
+<div ng-show="loadedMulti">
 	
-	<div ng-show="loadedMulti">
+		<center>Number of commits : </center></br></br>
 		<canvas id="line" class="chart chart-line" chart-data="dataCommit"
 			chart-labels="labels" chart-legend="true" chart-series="series"
 			chart-click="onClick" >
 		</canvas>
-		<canvas id="line" class="chart chart-line" chart-data="dataAdd"
+		</br></br>
+		<center>Number of line added : </center></br></br>
+		<canvas id="line" class="chart chart-bar" chart-data="dataAdd"
 			chart-labels="labels" chart-legend="true" chart-series="series"
 			chart-click="onClick" >
 		</canvas>
-		<canvas id="bar" class="chart chart-bar"
-			chart-data="dataDelete" chart-labels="labels" chart-series="series">
-		</canvas>
-	</div>
-	<div ng-show="loadedSimple">
-		<canvas id="doughnut" class="chart chart-doughnut"
-			chart-data="data" chart-labels="labels">
-		</canvas> 
-	</div>
 	
 </div>
+<div ng-show="loadedSimple">
+	<center>Statistics about the languages who where used :</center></br></br>
+	<canvas id="doughnut" class="chart chart-doughnut"
+		chart-data="data" chart-labels="labels">
+	</canvas> 
+</div>
+

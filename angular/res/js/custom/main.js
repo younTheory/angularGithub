@@ -1,7 +1,5 @@
 var tweb = angular.module('tweb', ['ngRoute', 'chart.js']);
 
-
-
 tweb.controller('main', function($scope, $http){
 	
 	$scope.username = "";
@@ -55,7 +53,6 @@ function getStatistics($scope, $http, $dir)
 	$scope.series = [];
 	$scope.data = [];
 	$scope.dataCommit = [];
-	$scope.dataDelete = [];
 	$scope.dataAdd = [];
 	$scope.repositoryNotFound = false;
 	$scope.loadedMulti = false;
@@ -70,13 +67,11 @@ function getStatistics($scope, $http, $dir)
 			// number of weeks in the repository
 			var nbWeeks = stats[0].weeks.length;
 			var commit = [];
-			var del = [];
 			var add = [];
 			for(var i = 0; i < nbUsers; i++){
 			// push of the name of the author
 			$scope.series.push(stats[i].author.login);
 			commit = [];
-			del = [];
 			add = [];
 			for(var j = 0; j < nbWeeks; j++){
 				// push of the name of the week
@@ -85,11 +80,9 @@ function getStatistics($scope, $http, $dir)
 					$scope.labels.push("Week " + j);
 				}
 				commit.push(stats[i].weeks[j].c);
-				del.push(stats[i].weeks[j].d)
 				add.push(stats[i].weeks[j].a)
 			}
 			$scope.dataCommit.push(commit);
-			$scope.dataDelete.push(del);
 			$scope.dataAdd.push(add);
 			}
 			$scope.loadedMulti = true;
@@ -117,6 +110,7 @@ function getStatistics($scope, $http, $dir)
 
 tweb.controller('repositoryUrl', function($scope, $http, $routeParams){
 	$usernameRepo = $routeParams.user + "/" + $routeParams.repository;
+	$scope.search = false;
 	getStatistics($scope, $http, $usernameRepo);
 	
 	$scope.onClick = function (points, evt) {
@@ -127,6 +121,7 @@ tweb.controller('repositoryUrl', function($scope, $http, $routeParams){
 tweb.controller('repository', function($scope, $http){
 	
 	$scope.repository = "";
+	$scope.search = true;
 	// function to get repository infos
 	$scope.getRepository = function () {
 		// search for the username + repository name in the url:
