@@ -1,11 +1,12 @@
 <div>
     <h2>Are you looking for some statistics of GitHub:</h2>
 	<p>Enter the url of the repository : </p>
-	<!--<form ng-submit="getRepository()">
+	<form ng-submit="getRepository()">
 		<input type="text" id="repository" ng-model="repository">
 		<input type="submit" value="search"> 
-	</form>-->
-	<div ng-show="loaded">
+	</form>
+	
+	<div ng-show="loadedMulti">
 		<canvas id="line" class="chart chart-line" chart-data="dataCommit"
 			chart-labels="labels" chart-legend="true" chart-series="series"
 			chart-click="onClick" >
@@ -18,4 +19,10 @@
 			chart-data="dataDelete" chart-labels="labels" chart-series="series">
 		</canvas>
 	</div>
+	<div ng-show="loadedSimple">
+		<canvas id="doughnut" class="chart chart-doughnut"
+			chart-data="data" chart-labels="labels">
+		</canvas> 
+	</div>
+	
 </div>

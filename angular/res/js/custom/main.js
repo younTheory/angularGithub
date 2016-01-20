@@ -48,104 +48,92 @@ tweb.controller('user', function($scope, $http){
 		})
 	};
 });
-tweb.controller('repositoryUrl', function($scope, $http, $routeParams){
+
+function getStatistics($scope, $http, $dir)
+{
 	$scope.labels = [];
 	$scope.series = [];
+	$scope.data = [];
 	$scope.dataCommit = [];
 	$scope.dataDelete = [];
 	$scope.dataAdd = [];
 	$scope.repositoryNotFound = false;
-	$scope.loaded = false;
-	$usernameRepo = $routeParams.user + "/" + $routeParams.repository;
-	console.log($usernameRepo);
-	$http.get("https://api.github.com/repos/" + $usernameRepo + "/stats/contributors")
-	.success(function (stats) {	 
+	$scope.loadedMulti = false;
+	$scope.loadedSimple = false;
+	$http.get("https://api.github.com/repos/" + $dir + "/stats/contributors")
+	.success(function (stats) 
+	{	 
 		// number of users in the repository
 		var nbUsers = stats.length;
-		// number of weeks in the repository
-		var nbWeeks = stats[0].weeks.length;
-		var commit = [];
-		var del = [];
-		var add = [];
-		for(var i = 0; i < nbUsers; i++){
-		 // push of the name of the author
-		 $scope.series.push(stats[i].author.login);
-		 commit = [];
-		 del = [];
-		 add = [];
-		 for(var j = 0; j < nbWeeks; j++){
-			// push of the name of the week
-			if (i == 0)
-			{
-				$scope.labels.push("Week " + j);
+		if(nbUsers != 0)
+		{
+			// number of weeks in the repository
+			var nbWeeks = stats[0].weeks.length;
+			var commit = [];
+			var del = [];
+			var add = [];
+			for(var i = 0; i < nbUsers; i++){
+			// push of the name of the author
+			$scope.series.push(stats[i].author.login);
+			commit = [];
+			del = [];
+			add = [];
+			for(var j = 0; j < nbWeeks; j++){
+				// push of the name of the week
+				if (i == 0)
+				{
+					$scope.labels.push("Week " + j);
+				}
+				commit.push(stats[i].weeks[j].c);
+				del.push(stats[i].weeks[j].d)
+				add.push(stats[i].weeks[j].a)
 			}
-			commit.push(stats[i].weeks[j].c);
-			del.push(stats[i].weeks[j].d)
-			add.push(stats[i].weeks[j].a)
+			$scope.dataCommit.push(commit);
+			$scope.dataDelete.push(del);
+			$scope.dataAdd.push(add);
+			}
+			$scope.loadedMulti = true;
 		}
-		$scope.dataCommit.push(commit);
-		$scope.dataDelete.push(del);
-		$scope.dataAdd.push(add);
+		// only 1 contributor we draw only statistic about the language
+		else
+		{
+			$http.get("https://api.github.com/repos/" + $dir + "/languages")
+			.success(function (stats) 
+			{
+				$scope.property = stats;
+				for(var language in $scope.property)
+				{
+					$scope.labels.push(language);
+					$scope.data.push($scope.property[language]);
+				}
+				$scope.loadedSimple = true;
+			})
 		}
-		$scope.loaded = true;
-		})
+	})
 	.error(function () {
 		$scope.repositoryNotFound = true;
 	})
+}
+
+tweb.controller('repositoryUrl', function($scope, $http, $routeParams){
+	$usernameRepo = $routeParams.user + "/" + $routeParams.repository;
+	getStatistics($scope, $http, $usernameRepo);
+	
 	$scope.onClick = function (points, evt) {
 		console.log(points, evt);
 	};
 });
 
 tweb.controller('repository', function($scope, $http){
-	$scope.labels = [];
-	$scope.series = [];
-	$scope.dataCommit = [];
-	$scope.dataDelete = [];
-	$scope.dataAdd = [];
-	$scope.repository = "";
 	
+	$scope.repository = "";
 	// function to get repository infos
 	$scope.getRepository = function () {
-		$scope.repositoryNotFound = false;
-		$scope.loaded = false;
 		// search for the username + repository name in the url:
 		$beginUsername = $scope.repository.search("//github.com/") + 13;
 		$usernameRepo = $scope.repository.substr($beginUsername);
-		$http.get("https://api.github.com/repos/" + $usernameRepo + "/stats/contributors")
-		  .success(function (stats) {	 
-			 // number of users in the repository
-			 var nbUsers = stats.length;
-			 // number of weeks in the repository
-			 var nbWeeks = stats[0].weeks.length;
-			 var commit = [];
-			 var del = [];
-			 var add = [];
-			 for(var i = 0; i < nbUsers; i++){
-				 // push of the name of the author
-				 $scope.series.push(stats[i].author.login);
-				 commit = [];
-				 del = [];
-				 add = [];
-				 for(var j = 0; j < nbWeeks; j++){
-					// push of the name of the week
-					if (i == 0)
-					{
-						$scope.labels.push("Week " + j);
-					}
-					commit.push(stats[i].weeks[j].c);
-					del.push(stats[i].weeks[j].d)
-					add.push(stats[i].weeks[j].a)
-				}
-				$scope.dataCommit.push(commit);
-				$scope.dataDelete.push(del);
-				$scope.dataAdd.push(add);
-			 }
-			 $scope.loaded = true;
-		  })
-		  .error(function () {
-			 $scope.repositoryNotFound = true;
-		  })
+		getStatistics($scope, $http, $usernameRepo);
+		
 	};
 	$scope.onClick = function (points, evt) {
 		console.log(points, evt);
