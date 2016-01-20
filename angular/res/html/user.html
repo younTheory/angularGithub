@@ -1,0 +1,29 @@
+<div>
+    <h1>Are you looking for some statistics about someone on GitHub:</h1>
+    <p>Enter the username you want to find</p>
+	<form ng-submit="getUser()">
+		<input type="text" id="username" ng-model="username">
+		<input type="submit" value="search"> 
+	</form>
+
+</div>
+
+<div ng-show="loaded">
+   <h2> {{ user.name }}
+      <span class="smallname">(@<a href="{{user.html_url}}" target="_blank"> {{user.login}} </a>)</span>
+   </h2>
+ 
+   <div class="ghcontent">
+      <div class="avi">
+         <a href="{{ user.html_url }}" target="_blank">
+            <img src="{{ user.avatar_url }}" width="80" height="80" alt="{{ user.login }}"></a>
+      </div>
+      Followers: {{ user.followers }} - Following: {{ user.following }}<br>Repos: {{ user.public_repos }}</p>
+   </div>
+</div>
+<!-- 
+<canvas id="doughnut" class="chart chart-doughnut"
+  chart-data="data" chart-labels="labels">
+</canvas> 
+<a href="#/login">Go to login</a>
+-->

@@ -1,0 +1,21 @@
+<div>
+    <h1>Are you looking for some statistics of GitHub:</h1>
+	<p>Enter the url of the repository : </p>
+	<form ng-submit="getGraph()">
+		<input type="text" id="graph" ng-model="graph">
+		<input type="submit" value="search"> 
+	</form>
+	<div ng-show="loaded">
+		<canvas id="line" class="chart chart-line" chart-data="dataCommit"
+			chart-labels="labels" chart-legend="true" chart-series="series"
+			chart-click="onClick" >
+		</canvas>
+		<canvas id="line" class="chart chart-line" chart-data="dataAdd"
+			chart-labels="labels" chart-legend="true" chart-series="series"
+			chart-click="onClick" >
+		</canvas>
+		<canvas id="bar" class="chart chart-bar"
+			chart-data="dataDelete" chart-labels="labels" chart-series="series">
+		</canvas>
+	</div>
+</div>

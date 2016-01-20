@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html ng-app="tweb">
+	<head>
+		<title>Angular with github api</title>
+		<link rel="stylesheet" href="/res/css/angular-chart.css"/>
+		<link rel="stylesheet" href="/res/css/bootstrap.min.css"/>
+		<link rel="stylesheet" href="/res/css/style.css"/>
+	</head>
+	<body>
+		<nav class="navbar navbar-default">
+			<div class="container-fluid">
+
+			<!-- Collect the nav links, forms, and other content for toggling -->
+				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+					<ul class="nav navbar-nav">
+						<li><a href="#">Home</a></li>
+						<li><a href="#user">users</a></li>
+						<li><a href="#graph">graph</a></li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+		<!-- include the html file with angular routing --->
+		<div>
+			<div class ="content" ng-view></div>
+		</div>
+		<script src="res/js/frameworks/jquery-2.1.4.min.js"></script>
+		<script src="res/js/frameworks/angular.min.js"></script>
+		<script src="res/js/frameworks/angular-route.min.js"></script>
+		<script src="res/js/custom/main.js"></script>	
+		<script src="res/js/frameworks/bootstrap.min.js"></script>
+		<script src="res/js/frameworks/Chart.js"></script>
+		<script src="res/js/frameworks/angular-chart.js"></script>
+	</body>
+</html>
