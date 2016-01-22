@@ -23,7 +23,6 @@ tweb.controller('user', function($scope, $http){
 	$scope.username = "";
 	$scope.getUser = function () {
 		$scope.userNotFound = false;
-		$scope.repoNotFound = false;
 		$scope.loadedUser = false;
 		$scope.loadedRepos = false;
 		// first request for getting info about the user
@@ -37,10 +36,8 @@ tweb.controller('user', function($scope, $http){
 				$scope.userrepo = data;
 				$scope.loadedRepos = true;
 			})
-			.error(function () {
-				$scope.repoNotFound = true;
-			})
 		})
+		// display that the user was not founded
 		.error(function () {
 			$scope.userNotFound = true;
 		})
@@ -103,7 +100,9 @@ function getStatistics($scope, $http, $dir)
 			})
 		}
 	})
+	// wrong directory given display error and search.
 	.error(function () {
+		$scope.search = true;
 		$scope.repositoryNotFound = true;
 	})
 }
@@ -119,15 +118,24 @@ tweb.controller('repositoryUrl', function($scope, $http, $routeParams){
 });
 
 tweb.controller('repository', function($scope, $http){
-	
+	$scope.errorWrongURL = false;
 	$scope.repository = "";
 	$scope.search = true;
 	// function to get repository infos
 	$scope.getRepository = function () {
-		// search for the username + repository name in the url:
-		$beginUsername = $scope.repository.search("//github.com/") + 13;
-		$usernameRepo = $scope.repository.substr($beginUsername);
-		getStatistics($scope, $http, $usernameRepo);
+		$scope.repositoryNotFound = false;
+		// check if the input begins with "https://github.com/"
+		if (!$scope.repository.search("https://github.com/"))
+		{
+			// "https://github.com/ has 19 char so we take them out
+			$usernameRepo = $scope.repository.substr(19);
+			$scope.search = false;
+			getStatistics($scope, $http, $usernameRepo);		
+		}
+		else
+		{
+			$scope.errorWrongURL = true;
+		}
 		
 	};
 	$scope.onClick = function (points, evt) {

@@ -4,8 +4,7 @@
   "description": "Ex TWEB",
   "main": "app.js",
   "dependencies": {
-    "express": "^4.13.3",
-	"angular-route": "1.4.x"
+    "express": "^4.13.3"
   },
   "devDependencies": {},
   "scripts": {

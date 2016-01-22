@@ -1,5 +1,8 @@
 <div>
     <center><h2>Are you looking for some statistics about someone on GitHub</h2>
+	<div ng-show="userNotFound">
+		<p>Please put a valid user, this one doesn't exist </p>
+	</div>
     <p>Enter the username you want to find</p>
 	<form ng-submit="getUser()">
 		<input type="text" id="username" ng-model="username">

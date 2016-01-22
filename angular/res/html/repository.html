@@ -1,6 +1,13 @@
+
 <div ng-show="search">
     <center><h2>Are you looking for some statistics of GitHub:</h2>
-	<p>Enter the url of the repository : </p>
+	<div ng-show="errorWrongURL">
+		<p>Please put a correct URL as the example below </p>
+	</div>
+	<div ng-show="repositoryNotFound">
+		<p>Your repository was not found please write a correct repository </p>
+	</div>
+	<p>Enter the url of the repository (Example: https://github.com/younTheory/angularGithub): </p>
 	<form ng-submit="getRepository()">
 		<input type="text" id="repository" ng-model="repository">
 		<input type="submit" value="search"> 

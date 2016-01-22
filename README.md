@@ -59,7 +59,7 @@ Voici step by step comment le projet a été implémenter :
 
 ### 1. Récupérer mon ancien projet angular ###
 
-Pour avoir une bonne structure du projet j'ai cloné mon ancien projet angulareJS. Ceci m'a permis de directement me retrouver. Il suffisait simplement de suprimer le dossier node_modules puis de modifier les dépendances du fichier package.json et de faire un node install dans le terminal pour avoir uniquement les dépendances nécessaire.
+Pour avoir une bonne structure du projet j'ai cloné mon ancien projet angulareJS. Ceci m'a permis de directement me retrouver. Il suffisait simplement de suprimer le dossier node_modules puis de modifier les dépendances du fichier package.json et de faire un npm install dans le terminal pour avoir uniquement les dépendances nécessaire.
 
 ### 2. Lecture de la documentation de l'api Github ###
 
