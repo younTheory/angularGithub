@@ -72,7 +72,7 @@ Pour comprendre le fonctionnement de l'api Github il m'a été important de lire
 
 Pour recevoir les informations d'un utilisateur Github, une saisie du nom d'utilisateur doit être faite dans l'onglet users. Ceci est gérer directement par mon contrôleur "user" qui fait 2 requêtes HTTP sur l'api github.
 
-- La première requête sert à recevoir les informations de l'utilisateur. Elle se fait sur cette addresse [https://api.github.com/users/:username"](https://api.github.com/users/yountheory") ou :username est le champ saisie par l'utilisateur dans le formulaire. ![information utilisateur](Image/infouser.png)
+- La première requête sert à recevoir les informations de l'utilisateur. Elle se fait sur cette addresse [https://api.github.com/users/:username"](https://api.github.com/users/yountheory") ou :username est le champ saisie par l'utilisateur dans le formulaire. !![alt tag](https://github.com/younTheory/angularGithub/blob/master/Image/infouser.PNG)
 
 
 - La deuxième requête sert à recevoir les informations du répertoires de l'utilisateur. Elle se fait sur cette addresse [https://api.github.com/users/:username/repos"](https://api.github.com/users/yountheory/repos") ou :username est le champ saisie par l'utilisateur dans le formulaire. </br>
