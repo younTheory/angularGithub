@@ -129,7 +129,7 @@ Le projet est donc accessible [ici](http://twebangulargithub.herokuapp.com/#/).
 
 ## Problème persistant  ##
 
-- Heroku n'affiche pas toujours les statistiques alors que en local tout fonctionne correctement.
+- Heroku n'affiche pas toujours les statistiques alors que en local tout fonctionne correctement. Surtout lorsqu'on clic sur les statistiques d'un répertoire d'un utilisateur.
 
 ## Conclusion  ##
 

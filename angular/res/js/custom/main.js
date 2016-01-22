@@ -125,11 +125,10 @@ tweb.controller('repository', function($scope, $http){
 	$scope.getRepository = function () {
 		$scope.repositoryNotFound = false;
 		// check if the input begins with "https://github.com/"
-		if (!$scope.repository.search("https://github.com/"))
+		if ($scope.repository.search("https://github.com/") == 0)
 		{
 			// "https://github.com/ has 19 char so we take them out
 			$usernameRepo = $scope.repository.substr(19);
-			$scope.search = false;
 			getStatistics($scope, $http, $usernameRepo);		
 		}
 		else
