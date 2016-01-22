@@ -72,11 +72,11 @@ Pour comprendre le fonctionnement de l'api Github il m'a été important de lire
 
 Pour recevoir les informations d'un utilisateur Github, une saisie du nom d'utilisateur doit être faite dans l'onglet users. Ceci est gérer directement par mon contrôleur "user" qui fait 2 requêtes HTTP sur l'api github.
 
-- La première requête sert à recevoir les informations de l'utilisateur. Elle se fait sur cette addresse [https://api.github.com/users/:username"](https://api.github.com/users/yountheory") ou :username est le champ saisie par l'utilisateur dans le formulaire. !![alt tag](https://github.com/younTheory/angularGithub/blob/master/Image/infouser.PNG)
+- La première requête sert à recevoir les informations de l'utilisateur. Elle se fait sur cette addresse [https://api.github.com/users/:username"](https://api.github.com/users/yountheory") ou :username est le champ saisie par l'utilisateur dans le formulaire. ![infouser](https://github.com/younTheory/angularGithub/blob/master/Image/infouser.PNG)
 
 
 - La deuxième requête sert à recevoir les informations du répertoires de l'utilisateur. Elle se fait sur cette addresse [https://api.github.com/users/:username/repos"](https://api.github.com/users/yountheory/repos") ou :username est le champ saisie par l'utilisateur dans le formulaire. </br>
-![information repo](Image/inforepo.png)
+![inforepo](https://github.com/younTheory/angularGithub/blob/master/Image/inforepo.PNG)
 
 Les informations sont affichées grâce à un tableau. A noter que vous pouvez voir les statistiques du répértoire en clicant sur statistics.
 
@@ -93,12 +93,12 @@ Dans les 2 cas la fonction getStatistics($scope, $http, $dir) sera appelée ce q
 1. Si il y'a plusieurs contributeurs au projet vous aurez une statistique à propos du nombre de commit et de ligne de code ajoutée. La requête HTTP est faite sur cette url :
 ["https://api.github.com/repos/:dir/stats/contributors"](https://api.github.com/repos/angular/angular/stats/contributors) ou dir est le nom utilisateur/nom du répertoire.
   Voici en image la statistique affichée: 
-![information repo](Image/comitrepo.png)
+![comitrepo](https://github.com/younTheory/angularGithub/blob/master/Image/comitrepo.PNG)
 Attention le chargement de ces statistiques peut parfois être lent.
 
 2. Sinon vous aurez une statistique du nombre de ligne de chaque différent language utilisé pour le projet. La requête HTTP est faite sur cette url :
 ["https://api.github.com/repos/:dir/languages"](https://api.github.com/repos/yountheory/angularGithub/languages) ou dir est le nom utilisateur/nom du répertoire. Voici le donut affiché:
-![information repo](Image/donutrepo.png)
+![donutrepo](https://github.com/younTheory/angularGithub/blob/master/Image/donutrepo.PNG)
 
 
 ### 5. Afficher les statistiques avec ChatJS ###
